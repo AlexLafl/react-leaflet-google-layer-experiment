@@ -33,7 +33,7 @@ const createLeafletElement = (props: IProps, context: LeafletContextInterface) =
     googleMapsScriptLoaded = true;
   }
   const instance = L.gridLayer.googleMutant(googleMutantProps);
-  if (googleMapsAddLayers && (context.layersControl as any)._map) {
+  if (googleMapsAddLayers) {
     googleMapsAddLayers.forEach(layer => {
       (instance as L.gridLayer.GoogleMutant).addGoogleLayer(layer.name, layer.options);
     });

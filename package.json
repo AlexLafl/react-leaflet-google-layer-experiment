@@ -75,6 +75,6 @@
     "@googlemaps/js-api-loader": "^1.8.0",
     "@types/leaflet": "^1.5.0",
     "@types/leaflet.gridlayer.googlemutant": "^0.4.6",
-    "leaflet.gridlayer.googlemutant": "git+https://gitlab.com/IvanSanchez/Leaflet.GridLayer.GoogleMutant.git"
+    "leaflet.gridlayer.googlemutant": "git+https://gitlab.com/IvanSanchez/Leaflet.GridLayer.GoogleMutant.git#9d4305b5768402a312d8c173a34ae6c94f2e8a89"
   }
 }
