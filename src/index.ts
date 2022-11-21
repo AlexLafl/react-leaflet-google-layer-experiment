@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as L from 'leaflet';
 import { createLayerComponent, updateGridLayer, LeafletContextInterface, LayerProps } from '@react-leaflet/core';
-import 'leaflet.gridlayer.googlemutant/dist/Leaflet.GoogleMutant';
+import 'leaflet.gridlayer.googlemutant';
 import { Loader, LoaderOptions } from '@googlemaps/js-api-loader';
 
 interface IGoogleMapsAddLayer {
@@ -20,8 +20,6 @@ interface IProps extends L.gridLayer.GoogleMutantOptions {
 let googleMapsScriptLoaded = false;
 
 const createLeafletElement = (props: IProps, context: LeafletContextInterface) => {
-  console.log('context');
-  console.log(context);
   const {
     apiKey = '',
     useGoogMapsLoader = true,
