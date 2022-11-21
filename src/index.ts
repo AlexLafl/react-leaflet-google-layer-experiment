@@ -4,7 +4,6 @@ import { createLayerComponent, updateGridLayer, LeafletContextInterface, LayerPr
 import 'leaflet.gridlayer.googlemutant/dist/Leaflet.GoogleMutant';
 import { Loader, LoaderOptions } from '@googlemaps/js-api-loader';
 
-
 interface IGoogleMapsAddLayer {
   name: 'BicyclingLayer' | 'TrafficLayer' | 'TransitLayer';
   options?: any;
@@ -21,22 +20,27 @@ interface IProps extends L.gridLayer.GoogleMutantOptions {
 let googleMapsScriptLoaded = false;
 
 const createLeafletElement = (props: IProps, context: LeafletContextInterface) => {
-  console.log("context")
-  console.log(context)
-  const { apiKey = '', useGoogMapsLoader = true, googleMapsLoaderConf = {}, googleMapsAddLayers, ...googleMutantProps } = props;
+  console.log('context');
+  console.log(context);
+  const {
+    apiKey = '',
+    useGoogMapsLoader = true,
+    googleMapsLoaderConf = {},
+    googleMapsAddLayers,
+    ...googleMutantProps
+  } = props;
   if (useGoogMapsLoader && !googleMapsScriptLoaded) {
-    const loader = new Loader({apiKey, ...googleMapsLoaderConf});
+    const loader = new Loader({ apiKey, ...googleMapsLoaderConf });
     loader.load();
     googleMapsScriptLoaded = true;
   }
-  const instance = L.gridLayer.googleMutant(googleMutantProps)
-  if (googleMapsAddLayers) {
-    googleMapsAddLayers.forEach((layer) => {
+  const instance = L.gridLayer.googleMutant(googleMutantProps);
+  if (googleMapsAddLayers && (context.layersControl as any)._map) {
+    googleMapsAddLayers.forEach(layer => {
       (instance as L.gridLayer.GoogleMutant).addGoogleLayer(layer.name, layer.options);
     });
-  }    
+  }
   return { instance, context };
-}
-
+};
 
 export default createLayerComponent<L.GridLayer, LayerProps & IProps>(createLeafletElement, updateGridLayer);
